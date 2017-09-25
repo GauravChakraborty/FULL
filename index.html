@@ -19,27 +19,18 @@
             <div class="form-group"> <label>Email address</label>
               <input type="email" name="email" class="form-control" placeholder="Enter email"> </div>
             <div class="form-group"> <label>Mobile Number</label> Numeric Value:
-              <input type="text" id="text1" class="numeric"> <span class="error" style="color: Red; display: none">* Input digits (0 - 9)</span>
-              <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+              <input type="text" id="text1" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;"> <span id="error" style="color: Red; display: none">* Input digits (0 - 9)</span>
               <script type="text/javascript">
                 var specialKeys = new Array();
                 specialKeys.push(8); //Backspace
-                $(function () {
-                    $(".numeric").bind("keypress", function (e) {
-                        var keyCode = e.which ? e.which : e.keyCode
-                        var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-                        $(".error").css("display", ret ? "none" : "inline");
-                        return ret;
-                    });
-                    $(".numeric").bind("paste", function (e) {
-                        return false;
-                    });
-                    $(".numeric").bind("drop", function (e) {
-                        return false;
-                    });
-                });
+                function IsNumeric(e) {
+                    var keyCode = e.which ? e.which : e.keyCode
+                    var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+                    document.getElementById("error").style.display = ret ? "none" : "inline";
+                    return ret;
+                }
               </script>
-              <input type="Mobile number" name="Mobile number" class="form-control" placeholder="Mobile number"> </div>
+              <input type="Mobile number" class="form-control" name="" placeholder="Mobile number"> </div>
             <div class="form-group"> <label>Password</label>
               <input type="password" name="password" class="form-control" placeholder="Password"> </div>
             <button type="submit" class="btn btn-primary">Send</button>
